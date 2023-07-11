@@ -19,6 +19,7 @@ final class VideoRenderStore {
     var videoSize: CGSize = .zero
     var cropTimeRange: CMTimeRange? = nil
     var mergedUrl: URL?
+    var audioMix: AVAudioMix?
     
     
     /// Create render instances from a single video

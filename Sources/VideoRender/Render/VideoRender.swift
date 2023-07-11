@@ -81,6 +81,10 @@ extension VideoRender{
         exportSession.outputURL = exportURL
         exportSession.shouldOptimizeForNetworkUse = optimizeForNetworkUse
         
+        if let audioMix = renderStore.audioMix{
+            exportSession.audioMix = audioMix
+        }
+        
         if let newTime = renderStore.cropTimeRange{
             exportSession.timeRange = newTime
         }
@@ -160,8 +164,15 @@ extension VideoRender{
     ///   - startingAt: Track start in seconds or zero
     ///   - trackDuration: Track duration in seconds or all available video duration
     ///   - volume: audio volume 0...1
-    public func addAudio(asset: AVAsset, startingAt: Double? = nil, trackDuration: Double? = nil, volume: Float = 1.0) {
-        let command = RenderAudioCommand(renderStore: renderStore, audioAsset: asset, startingAt: startingAt, trackDuration: trackDuration, volume: volume)
+    public func addAudio(asset: AVAsset, startingAt: Double? = nil, trackDuration: Double? = nil, videoLevel: Float = 1.0, musicLevel: Float = 1.0) {
+        let command = RenderAudioCommand(renderStore: renderStore, audioAsset: asset, startingAt: startingAt, trackDuration: trackDuration, videoLevel: videoLevel, musicLevel: musicLevel)
+        commands.append(command)
+    }
+    
+    /// Set video volume 0...1
+    /// - Parameter value: volume 0...1
+    public func setVolume(value: Float){
+        let command = RenderVolumeCommand(renderStore: renderStore, volume: value)
         commands.append(command)
     }
 }
