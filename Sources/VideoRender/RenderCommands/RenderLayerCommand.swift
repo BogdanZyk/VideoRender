@@ -7,7 +7,19 @@
 
 import Foundation
 import AVFoundation
+
+#if canImport(UIKit)
+
 import UIKit
+
+#endif
+
+#if canImport(AppKit)
+
+import AppKit
+
+#endif
+
 
 struct RenderLayerCommand: RenderCommand {
     
@@ -42,7 +54,12 @@ struct RenderLayerCommand: RenderCommand {
         videoLayer.frame = CGRect(origin: centerPoint, size: scaleSize)
         let bgLayer = CALayer()
         bgLayer.frame = CGRect(origin: .zero, size: videoSize)
+        
+#if os(iOS)
         bgLayer.backgroundColor = UIColor(color).cgColor
+#else
+        bgLayer.backgroundColor = NSColor(color).cgColor
+#endif
         
         let outputLayer = CALayer()
         outputLayer.frame = CGRect(origin: .zero, size: videoSize)
@@ -83,14 +100,21 @@ struct RenderLayerCommand: RenderCommand {
     private func createTextLayer(with model: TextBox, size: CGSize, position: CGSize, ratio: Double, duration: Double) -> CATextLayer {
         let textLayer = CATextLayer()
         textLayer.string = model.text
+        
+#if os(iOS)
         textLayer.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        textLayer.foregroundColor = UIColor(model.fontColor).cgColor
+        textLayer.backgroundColor = UIColor(model.bgColor).cgColor
+#else
+        textLayer.font = NSFont.systemFont(ofSize: 18, weight: .medium)
+        textLayer.foregroundColor = NSColor(model.fontColor).cgColor
+        textLayer.backgroundColor = NSColor(model.bgColor).cgColor
+#endif
         textLayer.fontSize = model.fontSize * ratio
         textLayer.alignmentMode = .center
-        textLayer.foregroundColor = UIColor(model.fontColor).cgColor
         textLayer.cornerRadius = 5
         let size = textLayer.preferredFrameSize()
         textLayer.frame = CGRect(x: position.width, y: position.height, width: size.width, height: size.height)
-        textLayer.backgroundColor =  UIColor(model.bgColor).cgColor
         
         if model.withAnimation{
             addOpacityAnimation(to: textLayer, with: model.timeRange, duration: duration)
