@@ -113,7 +113,7 @@ extension VideoRender{
         commands.append(command)
     }
     
-    /// Scale video time
+    /// Scale video time scaled factor 0.1 - 8.0
     /// - Parameter timeScale: scaled factor 0.1 - 8.0
     public func scaleTime(timeScale: Float64){
         let command = RenderScaleTimeCommand(renderStore: renderStore, timeScale: timeScale)
@@ -159,8 +159,9 @@ extension VideoRender{
     ///   - asset: audio AVAsset
     ///   - startingAt: Track start in seconds or zero
     ///   - trackDuration: Track duration in seconds or all available video duration
-    public func addAudio(asset: AVAsset, startingAt: Double? = nil, trackDuration: Double? = nil) {
-        let command = RenderAudioCommand(renderStore: renderStore, audioAsset: asset, startingAt: startingAt, trackDuration: trackDuration)
+    ///   - volume: audio volume 0...1
+    public func addAudio(asset: AVAsset, startingAt: Double? = nil, trackDuration: Double? = nil, volume: Float = 1.0) {
+        let command = RenderAudioCommand(renderStore: renderStore, audioAsset: asset, startingAt: startingAt, trackDuration: trackDuration, volume: volume)
         commands.append(command)
     }
 }

@@ -85,7 +85,7 @@ public struct VideoFrame{
     var frameColor: Color
     let scale: Double
 
-    init(scaleValue: Double = 0, frameColor: Color = .white) {
+    public init(scaleValue: Double = 0, frameColor: Color = .white) {
         self.scaleValue = scaleValue
         self.frameColor = frameColor
         self.scale = 1 - scaleValue
@@ -102,5 +102,22 @@ public struct TextBox{
     var offset: CGSize = .zero
     var timeRange: ClosedRange<Double> = 0...3
     var withAnimation: Bool = true
+    
+    public init(text: String = "",
+                fontSize: CGFloat = 20,
+                bgColor: Color = .white,
+                fontColor: Color = .black,
+                offset: CGSize = .zero,
+                timeRange: ClosedRange<Double> = 0...3,
+                withAnimation: Bool = true) {
+        
+        self.text = text
+        self.fontSize = fontSize
+        self.bgColor = bgColor
+        self.fontColor = fontColor
+        self.offset = offset
+        self.timeRange = timeRange
+        self.withAnimation = withAnimation
+    }
 }
 
