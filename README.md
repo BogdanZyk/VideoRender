@@ -1,4 +1,4 @@
-# VideoRender
+# VideoRender 🎞️
 
 ### Video Processing library. 
 
@@ -67,7 +67,7 @@ do{
 }
 ```
 
-# Rendering methods
+# ⤵️ Rendering methods
 
 
 ### 1️⃣ Adds an audio track to a video
