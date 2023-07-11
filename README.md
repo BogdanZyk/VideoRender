@@ -35,17 +35,17 @@ For Xcode 14, navigate to Files → Add Package
 ```swift
 do{
 
-let render = try await VideoRender(videoURL: videoURL)
-render.addAudio(asset: .init(url: audioUrl), videoLevel: 0.3, musicLevel: 1.0)
-render.crop(cropFrame: .init(x: 100, y: 100, width: 400, height: 400))
+    let render = try await VideoRender(videoURL: videoURL)
+    render.addAudio(asset: .init(url: audioUrl), videoLevel: 0.3, musicLevel: 1.0)
+    render.crop(cropFrame: .init(x: 100, y: 100, width: 400, height: 400))
 
-let exporter = try await render.export(exportURL: exportURL, outputFileType: .mp4)
+    let exporter = try await render.export(exportURL: exportURL, outputFileType: .mp4)
 
-///Final url 
-exporter.outputURL
+/// Final url 
+    exporter.outputURL
 
 }catch{
-print(error.localizedDescription)
+    print(error.localizedDescription)
 }
 ```
 
@@ -55,15 +55,15 @@ print(error.localizedDescription)
 ```swift
 do{
 
-let render = try await VideoRender(videoURLs: [videoUrl1, videoUrl2])
-render.scaleTime(timeScale: 0.5)
-let exporter = try await render.export(exportURL: exportURL, outputFileType: .mp4)
+    let render = try await VideoRender(videoURLs: [videoUrl1, videoUrl2])
+    render.scaleTime(timeScale: 0.5)
+    let exporter = try await render.export(exportURL: exportURL, outputFileType: .mp4)
 
-///Final url 
-exporter.outputURL
+/// Final url 
+    exporter.outputURL
 
 }catch{
-print(error.localizedDescription)
+    print(error.localizedDescription)
 }
 ```
 
