@@ -26,6 +26,7 @@ The asynchronous video processing library contains many features:
 Swift Package Manager (Recommended)
 You can install VideoRender into your Xcode project via SPM.
 For Xcode 14, navigate to Files → Add Package
+Paste the repository URL (https://github.com/BogdanZyk/VideoRender)
 
 
 # 🛠️ Usage
@@ -135,3 +136,17 @@ volume value 0...1
 ```swift
 render.setVolume(value: 0.3)
 ```
+
+### Exporter setups
+
+```swift
+ let exporter = try await render.export(
+    exportURL: exportURL,
+    presetName: .exportPreset1280x720,
+    optimizeForNetworkUse: false,
+    frameRate: .fps60,
+    outputFileType: .mp4)
+```
+
+### License
+VideoRender is created by BogdanZyk and licensed under the [License MIT](https://opensource.org/licenses/MIT)
