@@ -74,7 +74,12 @@ do{
 
 startingAt: Track start in seconds or zero, trackDuration: Track duration in seconds or all available video duration, volume: audio volume 0...1
 ```swift
-render.addAudio(asset: .init(url: audioUrl), startingAt: 1, trackDuration: 5, videoLevel: 0.5, musicLevel: 1)
+render.addAudio(
+    asset: .init(url: audioUrl),
+    startingAt: 1, 
+    trackDuration: 5, 
+    videoLevel: 0.5, 
+    musicLevel: 1)
 ```
 
 ### 2️⃣ Adds a frame and text to a video
@@ -85,7 +90,12 @@ render.addAudio(asset: .init(url: audioUrl), startingAt: 1, trackDuration: 5, vi
 ❗️Use only on real device, crash when adding layers on simulator!
 
 ```swift 
-render.addLayers(videoFrameLayer: .init(scaleValue: 0.1, frameColor: .red), textBoxLayers: [TextBox(text: "test", offset: .init(width: 100, height: 100), timeRange: 0...10)], playerFrame: playerFrame)
+render.addLayers(
+    videoFrameLayer: .init(scaleValue: 0.1, frameColor: .red),
+    textBoxLayers: [TextBox(text: "test", offset: .init(width: 100, height: 100),
+    timeRange: 0...10)],
+    playerFrame: playerFrame
+    )
 ```
 
 ### 3️⃣ Crop video time
