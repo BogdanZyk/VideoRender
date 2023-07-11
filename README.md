@@ -41,8 +41,8 @@ do{
 
     let exporter = try await render.export(exportURL: exportURL, outputFileType: .mp4)
 
-/// Final url 
-    exporter.outputURL
+///Finished videoUrl
+   print(exporter.outputURL)
 
 }catch{
     print(error.localizedDescription)
@@ -59,8 +59,8 @@ do{
     render.scaleTime(timeScale: 0.5)
     let exporter = try await render.export(exportURL: exportURL, outputFileType: .mp4)
 
-/// Final url 
-    exporter.outputURL
+///Finished videoUrl
+    print(exporter.outputURL)
 
 }catch{
     print(error.localizedDescription)
