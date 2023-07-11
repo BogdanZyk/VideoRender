@@ -95,17 +95,12 @@ final class VideoRenderStore {
         
         do{
             try await mergeVideos(to: composition, from: urls, audioEnabled: false)
-            ///Remove all cash videos
-            urls.forEach { url in
-                fileManager.removeFileIfExists(for: url)
-            }
-            
         }catch{
             print(error.localizedDescription)
         }
         
         let exporter = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality)
-        let exportUrl = URL.documentsDirectory.appending(path: "merged_video.mp4")
+        let exportUrl = URL.documentsDirectory.appending(path: "video_render_merged_video.mp4")
         fileManager.removeFileIfExists(for: exportUrl)
         
         exporter?.outputURL = exportUrl
