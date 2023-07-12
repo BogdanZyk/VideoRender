@@ -147,14 +147,26 @@ extension VideoRender{
         renderStore.cropTimeRange = timeRange
     }
     
-    /// Adds a frame and text to a video
+    /// Add text or a frame to the video
     /// - Parameters:
     ///   - videoFrameLayer: Video frame model and size
     ///   - textBoxLayers: Text boxes for text layers
     ///   - playerFrame: Size of the displayed video area for calculating test box positions
+    /// Use one of the methods for adding layers (addTextLayers or addLayers)
     /// Use only on real device, crash when adding layers on simulator!
-    public func addLayers(videoFrameLayer: VideoFrame, textBoxLayers: [TextBox] = [], playerFrame: CGSize) {
-        let command = RenderLayerCommand(renderStore: renderStore, videoFrame: videoFrameLayer, textBoxes: textBoxLayers, playerFrame: playerFrame)
+    public func addTextLayers(videoFrameLayer: VideoFrame, textBoxLayers: [TextBox] = [], playerFrame: CGSize) {
+        let command = RenderTextLayerCommand(renderStore: renderStore, videoFrame: videoFrameLayer, textBoxes: textBoxLayers, playerFrame: playerFrame)
+        commands.append(command)
+    }
+    
+    /// Add a CALayer to the video and any CATextLayer
+    /// - Parameters:
+    ///   - layers: [CALayer]
+    ///   - textLayer: [CATextLayer]
+    ///   Use one of the methods for adding layers (addTextLayers or addLayers)
+    ///   Use only on real device, crash when adding layers on simulator!
+    public func addLayers(layers: [CALayer], textLayer: [CATextLayer] = []){
+        let command = RenderLayersCommand(renderStore: renderStore, layers: layers, textLayers: textLayer)
         commands.append(command)
     }
     

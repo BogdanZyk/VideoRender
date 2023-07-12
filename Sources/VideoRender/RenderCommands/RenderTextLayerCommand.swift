@@ -1,5 +1,5 @@
 //
-//  RenderLayerCommand.swift
+//  RenderTextLayerCommand.swift
 //  
 //
 //  Created by Bogdan Zykov on 11.07.2023.
@@ -21,7 +21,7 @@ import AppKit
 #endif
 
 
-struct RenderLayerCommand: RenderCommand {
+struct RenderTextLayerCommand: RenderCommand {
     
     var renderStore: VideoRenderStore
     var videoFrame: VideoFrame
@@ -114,7 +114,7 @@ struct RenderLayerCommand: RenderCommand {
         textLayer.alignmentMode = .center
         textLayer.cornerRadius = 5
         let size = textLayer.preferredFrameSize()
-        textLayer.frame = CGRect(x: position.width, y: position.height, width: size.width, height: size.height)
+        textLayer.frame = CGRect(x: position.width, y: position.height, width: size.width + 6, height: size.height)
         
         if model.withAnimation{
             addOpacityAnimation(to: textLayer, with: model.timeRange, duration: duration)
