@@ -89,9 +89,10 @@ render.addAudio(
 - playerFrame: Size of the displayed video area for calculating test box positions
 
 ❗️Use only on real device, crash when adding layers on simulator!
+❗️Use one of the methods for adding layers (addTextLayers or addLayers)
 
 ```swift 
-render.addLayers(
+render.addTextLayers(
     videoFrameLayer: .init(scaleValue: 0.1, frameColor: .red),
     textBoxLayers: [TextBox(text: "test", offset: .init(width: 100, height: 100),
     timeRange: 0...10)],
@@ -99,39 +100,52 @@ render.addLayers(
     )
 ```
 
-### 3️⃣ Crop video time
+### 3️⃣ Add a CALayer to the video and any CATextLayer
+
+layers - [CALayer]
+textLayers - [CATextLayer]
+
+❗️Use only on real device, crash when adding layers on simulator!
+❗️Use one of the methods for adding layers (addTextLayers or addLayers)
+
+
+```swift 
+ render.addLayers(layers: layers, textLayer: textLayers)
+```
+
+### 4️⃣ Crop video time
 
 ```swift
 render.cropTime(timeRange: .init(start: startTime, end: endTime))
 ```
 
-### 4️⃣ Crop video size
+### 5️⃣ Crop video size
 
 ```swift
 render.crop(cropFrame: .init(x: 100, y: 100, width: 400, height: 400))
 ```
 
-### 5️⃣ Mirror horizontally or vertically
+### 6️⃣ Mirror horizontally or vertically
 
 ```swift
 render.mirror(isHorizontal: true)
 render.mirror(isHorizontal: false)
 ```
 
-### 6️⃣ Rotate video
+### 7️⃣ Rotate video
 
 ```swift
 render.rotate(rotateDegree: .rotateDegree90)
 ```
 
-### 7️⃣ Scale video time
+### 8️⃣ Scale video time
 TimeScale factor 0.1 - 8.0
 
 ```swift
 render.scaleTime(timeScale: 0.5)
 ```
 
-### 8️⃣ Set video volume
+### 9️⃣ Set video volume
 volume value 0...1
 ```swift
 render.setVolume(value: 0.3)
