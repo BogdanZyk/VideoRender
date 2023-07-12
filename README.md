@@ -73,7 +73,7 @@ do{
 
 ### 1️⃣ Adds an audio track to a video
 
-startingAt: Track start in seconds or zero, trackDuration: Track duration in seconds or all available video duration, volume: audio volume 0...1
+startingAt: Track start in seconds or zero, trackDuration: Track duration in seconds or all available video duration, videoLevel/musicLevel - 0...1
 ```swift
 render.addAudio(
     asset: .init(url: audioUrl),
