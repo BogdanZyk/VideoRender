@@ -36,11 +36,13 @@ extension VideoRender{
     ///   - optimizeForNetworkUse: Optimize video quality for network
     ///   - frameRate: Video frameRateEnum default  30fps
     ///   - outputFileType: outputFileType
+    ///   - withDefaultTransform: Default video track tranformation
     /// - Returns: AVAssetExportSession
     public func export(exportURL: URL,
                        presetName: PresetNameEnum = .exportPresetHighestQuality,
                        optimizeForNetworkUse: Bool = true,
                        frameRate: VideoRate = .fps30,
+                       withDefaultTransform: Bool = false,
                        outputFileType: AVFileType) async throws -> AVAssetExportSession{
         
         try await applyCommands()
@@ -53,6 +55,9 @@ extension VideoRender{
             throw VideoRenderError.failedInitExportSession
         }
         
+        if let defaultTransform = renderStore.preferredTransform, withDefaultTransform{
+            renderStore.videoCompositionTrack?.preferredTransform = defaultTransform
+        }
         
         if let videoComposition = renderStore.videoComposition {
             

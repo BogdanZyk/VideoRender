@@ -20,6 +20,7 @@ final class VideoRenderStore {
     var cropTimeRange: CMTimeRange? = nil
     var mergedUrl: URL?
     var audioMix: AVAudioMix?
+    var preferredTransform: CGAffineTransform?
     
     
     /// Create render instances from a single video
@@ -47,16 +48,17 @@ final class VideoRenderStore {
         self.assetAudioTrack = assetAudioTrack
         
         /// Load video naturalSize
-        guard let naturalSize = try? await assetVideoTrack.load(.naturalSize) else {
+        guard let (naturalSize, preferredTransform) = try? await assetVideoTrack.load(.naturalSize, .preferredTransform) else {
             throw VideoRenderError.failedLoadNaturalSize
         }
-        
+    
         /// Load video duration
         guard let duration = try? await asset.load(.duration) else {
             throw VideoRenderError.failedLoadDuration
         }
         
-        videoSize = naturalSize
+        self.videoSize = naturalSize
+        self.preferredTransform = preferredTransform
         
         composition = AVMutableComposition()
         videoComposition = AVMutableVideoComposition()
