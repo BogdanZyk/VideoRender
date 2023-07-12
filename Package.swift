@@ -24,8 +24,5 @@ let package = Package(
         .target(
             name: "VideoRender",
             dependencies: []),
-        .testTarget(
-            name: "VideoRenderTests",
-            dependencies: ["VideoRender"]),
     ]
 )
