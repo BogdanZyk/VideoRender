@@ -97,7 +97,7 @@ final class VideoRenderStore {
         let composition = AVMutableComposition()
         
         do{
-            try await mergeVideos(to: composition, from: urls, audioEnabled: false)
+            try await mergeVideos(to: composition, from: urls, audioEnabled: true)
         }catch{
             print(error.localizedDescription)
         }
