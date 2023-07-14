@@ -10,6 +10,7 @@ import AVFoundation
 
 final class VideoRenderStore {
     
+    var asset: AVAsset?
     var composition: AVMutableComposition?
     var assetVideoTrack: AVAssetTrack?
     var assetAudioTrack: AVAssetTrack?
@@ -25,12 +26,14 @@ final class VideoRenderStore {
     /// Create render instances from a single video
     init(asset: AVAsset) async throws {
         try await self.loadAsset(asset: asset)
+        self.asset = asset
     }
     
     /// Creates a render instance from multiple videos merged into a single video
     init(urls: [URL]) async throws {
         let mergedVideo = try await createMergedVideo(urls)
         try await loadAsset(asset: mergedVideo)
+        self.asset = mergedVideo
     }
     
     

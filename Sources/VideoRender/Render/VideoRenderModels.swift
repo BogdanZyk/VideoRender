@@ -9,6 +9,11 @@ import Foundation
 import AVFoundation
 import SwiftUI
 
+enum RenderCommandType: Int{
+    case audio, crop, trimTime, rotate,
+         textLayer, anyLayer, mirror, scaleTime, volume
+}
+
 
 public enum RotateDegreeEnum: Int{
     case rotateDegree90 = 1

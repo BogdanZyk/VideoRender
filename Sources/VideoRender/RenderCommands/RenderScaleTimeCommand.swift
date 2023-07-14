@@ -10,6 +10,7 @@ import AVFoundation
 
 struct RenderScaleTimeCommand: RenderCommand{
     
+    var type: RenderCommandType = .scaleTime
     var renderStore: VideoRenderStore
     var timeScale: Float64
     

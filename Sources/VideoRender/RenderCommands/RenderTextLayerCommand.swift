@@ -23,6 +23,7 @@ import AppKit
 
 struct RenderTextLayerCommand: RenderCommand {
     
+    var type: RenderCommandType = .textLayer
     var renderStore: VideoRenderStore
     var videoFrame: VideoFrame
     var textBoxes: [TextBox]

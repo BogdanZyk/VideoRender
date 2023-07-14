@@ -10,6 +10,7 @@ import AVFoundation
 
 struct RenderLayersCommand: RenderCommand{
     
+    var type: RenderCommandType = .anyLayer
     var renderStore: VideoRenderStore
     var layers: [CALayer]
     var textLayers: [CATextLayer]

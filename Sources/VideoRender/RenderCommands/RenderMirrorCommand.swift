@@ -10,6 +10,7 @@ import AVFoundation
 
 struct RenderMirrorCommand: RenderCommand{
     
+    var type: RenderCommandType = .mirror
     var renderStore: VideoRenderStore
     var isHorizontal: Bool
     

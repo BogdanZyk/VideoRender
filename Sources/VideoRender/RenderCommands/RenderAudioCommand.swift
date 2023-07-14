@@ -10,6 +10,7 @@ import AVFoundation
 
 struct RenderAudioCommand: RenderCommand {
     
+    var type: RenderCommandType = .audio
     var renderStore: VideoRenderStore
     var audioAsset: AVAsset
     var startingAt: Double

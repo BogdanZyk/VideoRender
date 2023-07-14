@@ -98,6 +98,9 @@ extension VideoRender{
     }
     
     private func applyCommands() async throws {
+        
+        let sortCommands = commands.sorted(by: {$0.type != .trimTime && $1.type == .trimTime})
+        print(sortCommands.map({$0.type}))
         for try await command in AsyncCommandSequence(commands: commands) {
             await command.execute()
         }
@@ -143,7 +146,8 @@ extension VideoRender{
     /// CMTime(seconds: 3, preferredTimescale: 1000)
     /// CMTimeRange(start: , duration: )
     public func cropTime(timeRange: CMTimeRange){
-        renderStore.cropTimeRange = timeRange
+        let command = RenderTrimCommand(renderStore: renderStore, endTime: timeRange.end, startTime: timeRange.start)
+        commands.append(command)
     }
     
     /// Add text or a frame to the video

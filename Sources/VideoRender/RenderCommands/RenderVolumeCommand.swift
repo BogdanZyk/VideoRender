@@ -10,6 +10,7 @@ import AVFoundation
 
 struct RenderVolumeCommand: RenderCommand{
     
+    var type: RenderCommandType = .volume
     var renderStore: VideoRenderStore
     var volume: Float
     

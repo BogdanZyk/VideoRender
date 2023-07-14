@@ -10,6 +10,7 @@ import AVFoundation
 
 struct RenderRotateCommand: RenderCommand{
     
+    var type: RenderCommandType = .rotate
     var renderStore: VideoRenderStore
     var rotateDegree: RotateDegreeEnum
     

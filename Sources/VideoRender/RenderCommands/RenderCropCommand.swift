@@ -10,6 +10,7 @@ import AVFoundation
 
 struct RenderCropCommand: RenderCommand{
     
+    var type: RenderCommandType = .crop
     var renderStore: VideoRenderStore
     var cropFrame: CGRect
     

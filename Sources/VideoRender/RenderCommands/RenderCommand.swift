@@ -9,6 +9,7 @@ import Foundation
 
 protocol RenderCommand {
     
+    var type: RenderCommandType { get set }
     var renderStore: VideoRenderStore { get set }
     
     func execute() async
